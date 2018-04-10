@@ -7,8 +7,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev-docker": "../node_modules/nodemon/bin/nodemon.js --debug=5858",
-    "docker-cli": "docker-compose exec node bash",
+    "start-docker": "docker-compose up -d",
+    "docker-cli": "docker-compose exec web bash",
+    "dev-docker": "nodemon --inspect=0.0.0.0:9229",
     "dev-host": "nodemon --debug=5858",
     "start-watch": "nodemon index.js --inspect=0.0.0.0:9229",
     "start-wait-debuger": "nodemon index.js --inspect-brk=0.0.0.0:9229",
@@ -18,6 +19,7 @@
   },
   "dependencies": {
     "express": "4.14.1",
+    "express-session": "^1.15.6",
     "mongoose": "5.0.14",
     "mongoose-validator": "2.0.2",
     "morgan": "1.8.1"

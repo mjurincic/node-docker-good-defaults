@@ -2,22 +2,16 @@ version: '3'
 
 services:
 
-  node:
-    env_file: .env
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    # you can use legacy debug config or new inspect
-    # NOTE: if nodemon isn't restarting on changes, you might be on Windows
-    # which has trouble seeing file changes, so add -L to use legacy polling
-    # https://github.com/remy/nodemon#application-isnt-restarting
-    #command: nodemon --debug=0.0.0.0:5858
-    command: nodemon --inspect=0.0.0.0:9229
+  web:
+    build: ./
     ports:
       - ${PORT}:${PORT}
       - 5858:5858
       - 9229:9229
       - 9230:9230
+    env_file: .env
+    depends_on:
+      - mongo
     volumes:
       - .:/app:delegated
       # this is a workaround to prevent host node_modules from accidently getting mounted in container
@@ -25,11 +19,18 @@ services:
       # this will overwrite the default node_modules dir in container so it won't conflict with our
       # /app/node_modules location.
       - notused:/app/node_modules
+    # you can use legacy debug config or new inspect
+    # NOTE: if nodemon isn't restarting on changes, you might be on Windows
+    # which has trouble seeing file changes, so add -L to use legacy polling
+    # https://github.com/remy/nodemon#application-isnt-restarting
+    #command: nodemon --debug=0.0.0.0:5858
+    command: nodemon --inspect=0.0.0.0:9229
 
   # NoSQL datastore (MongoDB)
   mongo:
-    image: mongo
+    image: mongo:latest
     ports:
       - 27017:27017
+
 volumes:
     notused:

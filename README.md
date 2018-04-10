@@ -54,6 +54,7 @@ To execute the unit-tests, you would:
 ### Other Resources
 
  - https://blog.hasura.io/an-exhaustive-guide-to-writing-dockerfiles-for-node-js-web-apps-bbee6bd2f3c4
+ - https://devcenter.heroku.com/articles/local-development-with-docker-compose
 
 MIT License, 
 
