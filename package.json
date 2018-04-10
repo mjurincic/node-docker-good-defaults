@@ -8,6 +8,7 @@
   "scripts": {
     "start": "node index.js",
     "dev-docker": "../node_modules/nodemon/bin/nodemon.js --debug=5858",
+    "docker-cli": "docker-compose exec node bash",
     "dev-host": "nodemon --debug=5858",
     "start-watch": "nodemon index.js --inspect=0.0.0.0:9229",
     "start-wait-debuger": "nodemon index.js --inspect-brk=0.0.0.0:9229",
