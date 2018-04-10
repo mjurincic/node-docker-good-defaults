@@ -25,6 +25,7 @@ mongoose.connect(process.env.MONGO_URI)
     .then(function () {
         console.log("Connected to MongoDB");
         // Seed the example product table
+        require('./models/seeds/product.js')();
     }).catch(err => console.error(err));
 
 app.use(morgan('common'));
